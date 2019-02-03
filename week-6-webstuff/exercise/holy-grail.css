@@ -1,0 +1,15 @@
+body,
+html {
+  /*
+  The default html interpertation adds margin and padding to the basic elements
+  So it can be logically helpful to remove them from the beginning!
+  */
+  font-family: sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+}
