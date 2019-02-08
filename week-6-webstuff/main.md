@@ -63,7 +63,7 @@ When you combine selectors in css with spaces, you are describing a nesting, so 
 And we wanted to apply a style just to the wowza (and not yowza) we would do something like
 
 `css
-.cooldogs h1 {
+.cool-dogs h1 {
   color: red;
   text-decoration: underline;
 }
