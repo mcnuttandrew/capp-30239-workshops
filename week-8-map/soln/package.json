@@ -1,0 +1,71 @@
+{
+  "name": "scaffold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "d3-geo": "^1.11.3",
+    "d3-scale": "^2.2.2",
+    "d3-scale-chromatic": "^1.3.3",
+    "d3-selection": "^1.4.0",
+    "domready": "^1.0.8"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-0": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "budo": "^10.0.4",
+    "eslint": "^3.13.1",
+    "eslint-config-uber-es2015": "^3.0.1",
+    "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-streamify": "1.0.2",
+    "gulp-uglify": "^3.0.0",
+    "minimist": "^1.2.0",
+    "node-reset-scss": "^1.0.1",
+    "sass-lint": "^1.12.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "open": "gulp watch --open",
+    "start": "gulp watch",
+    "build": "gulp bundle --production",
+    "lint": "eslint .",
+    "lint-scss": "sass-lint 'src/sass/*.scss' --verbose --no-exit"
+  },
+  "babel": {
+    "env": {
+      "production": {
+        "presets": [
+          "es2015",
+          "stage-0"
+        ]
+      },
+      "development": {
+        "presets": [
+          "es2015",
+          "stage-0"
+        ]
+      },
+      "es": {
+        "presets": [
+          [
+            "es2015",
+            {
+              "modules": false
+            }
+          ],
+          "stage-0"
+        ]
+      }
+    }
+  }
+}
