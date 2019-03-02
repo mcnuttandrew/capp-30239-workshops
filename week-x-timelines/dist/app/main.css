@@ -1,0 +1,34 @@
+/* Feel free to add whatever styles you wish here */
+#avis {
+  outline: #0f0 solid 1px; }
+
+/* class == "bar" */
+.bar {
+  fill: steelblue; }
+
+.dot {
+  fill: cadetblue; }
+
+.vline {
+  stroke: lightskyblue; }
+
+.vellipse {
+  fill: lightsteelblue; }
+
+.rrect {
+  fill: deepskyblue; }
+
+.thicks {
+  fill: white;
+  stroke: gray; }
+
+.axis--x path {
+  display: none; }
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column; }
+
+.intro-link {
+  font-size: 32px; }

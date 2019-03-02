@@ -1,0 +1,47 @@
+/* Feel free to add whatever styles you wish here */
+
+// sccsasdadsa-lint:disable ColorKeyword
+
+#avis {
+  outline: #0f0 solid 1px;
+}
+/* class == "bar" */
+.bar {
+  fill: steelblue;
+}
+
+.dot {
+  fill: cadetblue;
+}
+
+.vline {
+  stroke: lightskyblue;
+}
+
+.vellipse {
+  fill: lightsteelblue;
+}
+
+.rrect {
+  fill: deepskyblue;
+}
+
+.thicks {
+  fill: white;
+  stroke: gray;
+}
+
+// elements of class "path" descended from elements of class "axis--x"
+.axis--x path {
+  display: none;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-link {
+  font-size: 32px;
+}
