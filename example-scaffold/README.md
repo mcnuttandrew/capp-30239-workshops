@@ -43,8 +43,12 @@ yarn add PACKAGENAME
 
 Development:
 
-Step 1: Do all of your work in src. There is no step 2. (Don't change .css)
+Step 1: Do all of your work in src. There is no step 2.
 
 Production:
 
-When you are done run `yarn build`, which will spit out a bundle.js containing all of the javascript necessary to run your page. You can then mount the contents of the app folder wherever you want (gh-pages for instance) and it'll work good. 
+When you are done run `yarn build`, which will spit out a bundle.js containing all of the javascript necessary to run your page. You can then deploy your site by running
+
+```sh
+./deploy-to-gh-pages.sh
+```
