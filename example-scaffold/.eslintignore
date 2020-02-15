@@ -1,0 +1,6 @@
+node_modules/*
+dist/*
+_maps/*
+bundle.js
+0.bundle.worker.js
+*.json

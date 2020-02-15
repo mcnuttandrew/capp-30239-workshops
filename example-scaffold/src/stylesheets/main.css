@@ -1,0 +1,14 @@
+
+a {
+  cursor: pointer;
+}
+
+html,
+body {
+  background: #D6D6CE;
+  font-family: Verdana, Geneva, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
