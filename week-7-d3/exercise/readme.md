@@ -2,7 +2,6 @@
 
 In this workshop we will spend some time learning how do basic d3 manipulation.
 
-
 ## Installation and start
 
 Let's get started! First we need to install our dependencies. To do so we will make use of the npm command line tool, usefully called npm. This will download all of the packages that we've said are required in our package.json file, (go take a look!).
@@ -32,7 +31,6 @@ The scaffold that I we're using here doesn't use very good engineering. It impor
 
 We'll be covering some basic d3 usage.
 
-
 ### Scales
 
 d3 scales are at the backbone of any d3.js chart. They allow you to map pretty much any data type into any other data type. This is most often deployed as mapping from a chart space (somewhere where you can easily reason about the layout of the things in the space) to a view space (where it's actually show). For this you will use the might scaleLinear.
@@ -42,32 +40,42 @@ Scale functions work by first invoking the scale function (be it scaleLinear, sc
 Here's some example usage:
 
 ```javascript
-const scaleA = d3.scaleLinear().domain([0, 10]).range([0, 5]);
-console.log(scaleA(1), scaleA(2))
+const scaleA = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range([0, 5]);
+console.log(scaleA(1), scaleA(2));
 // 0.5 1
 
-const scaleB = d3.scaleLinear().domain([0, 10]).range([5, 0]);
-console.log(scaleB(1), scaleB(2))
+const scaleB = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range([5, 0]);
+console.log(scaleB(1), scaleB(2));
 // 4.5 4
 
-const domain = ['a', 'b', 'c'];
-const range = ['cool', 'dogs', 'sunglasses'];
-const scaleC = d3.scaleOrdinal().domain(domain).range(range);
-console.log(scaleC('a'), scaleC('b'))
+const domain = ["a", "b", "c"];
+const range = ["cool", "dogs", "sunglasses"];
+const scaleC = d3
+  .scaleOrdinal()
+  .domain(domain)
+  .range(range);
+console.log(scaleC("a"), scaleC("b"));
 // cool dogs
 
-const scaleD = d3.scaleLinear().domain([0, 10]).range(['red', 'black']);
-console.log(scaleD(1), scaleD(2))
+const scaleD = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range(["red", "black"]);
+console.log(scaleD(1), scaleD(2));
 // rgb(230, 0, 0) rgb(204, 0, 0)
-
-````
+```
 
 ### d3 life cycle methods
 
-The literally best way to learn this is by reading this article https://bost.ocks.org/mike/join/ It's written by the guy who made d3. It's great. Now try exploring this life cycle explorer:  https://bl.ocks.org/cmgiven/32d4c53f19aea6e528faf10bfe4f3da9
+The literally best way to learn this is by reading this article https://bost.ocks.org/mike/join/ It's written by the guy who made d3. It's great. Now try exploring this life cycle explorer: https://bl.ocks.org/cmgiven/32d4c53f19aea6e528faf10bfe4f3da9
 
-
-Once you've read that, read this annotated pie chart code
+Once youve read that, read this annotated pie chart code
 
 ```javascript
 // all the basics
@@ -86,76 +94,77 @@ const data = [
 
 const vis = d3.select("body")
   //create the SVG element inside the <body>
-  .append('svg:svg')              
+  .append('svg:svg')
   //associate our data with the document
-  .data([data])                   
+  .data([data])
       //set the width and height of our visualization (these will be attributes of the <svg> tag
-      .attr("width", w)           
+      .attr("width", w)
       .attr("height", h)
       //make a group to hold our pie chart
-  .append("svg:g")               
+  .append("svg:g")
       // move the center of the pie chart from 0, 0 to radius, radius
       // node the string templating syntax here
-      .attr("transform", `translate(${r},${r})`)    
+      .attr("transform", `translate(${r},${r})`)
 
 //this will create <path> elements for us using arc data
 const arc = d3.svg.arc().outerRadius(r);
 
 //this will create arc data for us given a list of values
-const pie = d3.layout.pie()           
+const pie = d3.layout.pie()
     // we must tell it out to access the value of each element in our data array
    .value(d => d.value);
     // you could also write this function explicitly, as below, but the arrow is better
-    // .value(function(d) { return d.value; });    
+    // .value(function(d) { return d.value; });
 
 //this selects all <g> elements with class slice (there aren't any yet)
-var arcs = vis.selectAll("g.slice")     
+var arcs = vis.selectAll("g.slice")
   // associate the generated pie data (an array of arcs,
   // each having startAngle, endAngle and value properties)
-  .data(pie)                         
-  .enter()                            
+  .data(pie)
+  .enter()
   // this will create <g> elements for every "extra" data element that should be associated with a selection.
   // The result is creating a <g> for every object in the data array create a group to hold each slice
   // (we will have a <path> and a <text> element associated with each slice)
-    .append("svg:g")                
+    .append("svg:g")
       //allow us to style things in the slices (like text)
-      .attr("class", "slice");   
+      .attr("class", "slice");
 
 arcs.append("svg:path")
   //set the color for each slice to be chosen from the color function defined above
   // again note the arrow
   .attr("fill", (d, i) => color(i))
   //this creates the actual SVG path using the associated data (pie) with the arc drawing function
-  .attr("d", arc);                                    
+  .attr("d", arc);
 
 //add a label to each slice
-arcs.append("svg:text")                                     
+arcs.append("svg:text")
   //set the label's origin to the center of the arc
-  .attr("transform", function(d) {                    
+  .attr("transform", function(d) {
       //we have to make sure to set these before calling arc.centroid
       d.innerRadius = 0;
       d.outerRadius = r;
       //this gives us a pair of coordinates like [50, 50]
-      return `translate(${arc.centroid(d)})`;        
+      return `translate(${arc.centroid(d)})`;
   })
   //center the text on it's origin
-  .attr("text-anchor", "middle")                          
+  .attr("text-anchor", "middle")
   //get the label from our original data array
-  .text((d, i) => data[i].label; });        
+  .text((d, i) => data[i].label; });
 ```
+
 (Modified from original Source: http://bl.ocks.org/enjalot/1203641)
 
 For more annotated d3 scripting check out this guy: https://github.com/alexcengler/d3-intro-heatmap/blob/master/script.js
 
 ## Exercises MAKE A BAR CHART
 
-We're going to be a bar chart describing the number of types of car made different regions of manufacter.  I've provided you some data and a little scaffold in the index.js folder. Make sure you've run npm run start, and pointed your browser to localhost:8080!
+We're going to be a bar chart describing the number of types of car made different regions of manufacter. I've provided you some data and a little scaffold in the index.js folder. Make sure you've run npm run start, and pointed your browser to localhost:8080!
 
 0. Convert the data into a usable format.
 
 1. Make the bars.
 
-2. Make axes, labels, and a title.
+1. Make axes, labels, and a title.
 
 There are more instructions in the index.js!
 
