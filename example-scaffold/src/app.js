@@ -2,6 +2,8 @@
 // import MY_DATA from './app/data/example.json'
 // (I tend to think it's best to use screaming snake case for imported json)
 const domReady = require('domready');
+// this command imports the css file, if you remove it your css wont be applied!
+import './main.css';
 
 domReady(() => {
   // this is just one example of how to import data. there are lots of ways to do it!
