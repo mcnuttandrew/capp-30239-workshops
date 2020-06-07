@@ -8,7 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "eslint": "^3.13.1",
+    "eslint": "^4.18.2",
     "eslint-config-uber-es2015": "^3.0.1",
     "live-server": "^0.7"
   },
